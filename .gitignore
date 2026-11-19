@@ -187,3 +187,8 @@ GdUnitRunner.cfg
 # === Secrets ===
 .env
 .env.*
+
+# Devlog video stays local (too big for git); PNG/GIF are committed
+production/devlog/media/**/*.mp4
+production/devlog/media/**/*.mov
+production/devlog/media/**/*.avi

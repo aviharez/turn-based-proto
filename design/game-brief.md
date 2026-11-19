@@ -44,22 +44,23 @@ Floor 2 (minute 3–5) adds enemies whose intents combine, so the player must ch
 - Fail: the hero's HP reaches 0 on an expedition → the run ends, unbanked loot is lost, the player returns home.
 
 ## Features
-- [ ] Turn-based battle on a grid (walkable ~7×8 inside the 9-wide view) with move, Strike, Cast, Guard, Parry, Focus and telegraphed intents
-- [ ] Spell weaving: Element + Shape + up to 2 Modifiers, 5 grimoire slots, attribute gates (Might / Wits / Spirit)
-- [ ] Expedition run: 3–5 floors, shrines with bank-or-push-on, seeded generation
-- [ ] Persistent hero: level, gear (5 rarities), skill tree for 1 of 12 archetypes (3 origins × 4 callings)
-- [ ] Settlement grid: ~12 buildings, farms/quarries producing offline (24 h cap)
-- [ ] House interior you decorate with found/crafted/cosmetic furniture
-- [ ] Allies (~8) who move in, run facilities and join as 1 companion
+Chapter 1 (30-day build, feature-complete 19 Dec 2026; details in production/milestone.md):
+- [ ] Turn-based battle on a 7×8 grid with move, Strike, Cast, Guard, Parry, Focus, telegraphed intents and high ground
+- [ ] Spell weaving: 4 elements × 3 shapes × 4 modifiers, 5 grimoire slots
+- [ ] Expedition: Wanaraga, 3 floors + Buto Ijo boss, shrine bank-or-push-on, seeded floors
+- [ ] Persistent hero: 2 callings (silat fighter, dukun caster), levels, 3 gear slots, 3 rarities
+- [ ] Settlement grid: Forge, Kitchen, Shrine, House; offline farm (24 h cap)
+- [ ] House: one room you decorate with ~20 furniture pieces
+- [ ] 2 allies who move in and run the Forge and Kitchen
 
 ## Your systems
 - turn-based battle with intents, Guard and Parry · in the slice
 - spell weaving · in the slice
 - expedition floors and shrines · in the slice
-- settlement building · thin stand-in
-- house decorating · thin stand-in
+- settlement building · in the slice
+- house decorating · in the slice
 - crafting: forge, alchemy, kitchen · thin stand-in
-- allies, facilities and friendships · later
+- allies, facilities and friendships · thin stand-in
 - 12 archetypes and skill trees · later
 - modes: Oaths, Endless Depths, Daily Expedition · later
 - AI-written dialogue · thin stand-in
@@ -75,18 +76,18 @@ Floor 2 (minute 3–5) adds enemies whose intents combine, so the player must ch
 - Sacred or religious figures as enemies (Nyi Roro Kidul, Dewi Sri, Semar/Punakawan, Barong/Rangda); pocong and wewe gombel
 
 ## Out of scope
+- Payments in Chapter 1: it launches free; the $5.99 unlock comes with Chapter 2 (provisional)
+- Google Play release work inside the 30-day build (closed test, store page come after 19 Dec)
 - iOS and Steam releases (for now)
 - Multiplayer and co-op (later: visiting friends' settlements, trading, leaderboards)
 - Real-time combat
 - Voice-acted dialogue
 
 ## Build order
-1. Battle slice: one 7×8 arena, silat hero vs 3 tuyul + 1 brute, intents, Guard/Parry, Focus. Lose = hero HP 0. Prove it feels snappy.
-2. Spell weaving with 4 elements, 3 shapes, 2 modifiers; grimoire of 5.
-3. Expedition of 3 floors with a shrine and bank-or-push-on; seeded floors.
-4. Home stand-in: settlement grid with 3 buildings and build-mode zoom; meals as buffs.
-5. First boss (Buto Ijo, 2×2) and the Wanaraga chapter opening.
-6. House decorating stand-in and the first ally.
+1. Week 1: battle slice on a 7×8 grid, silat hero vs 3 tuyul + 1 brute, intents, Guard/Parry, Focus. Lose = hero HP 0. Prove it feels snappy.
+2. Week 2: spell weaving; 3-floor expedition with a shrine and bank-or-push-on; art batch 1.
+3. Week 3: Buto Ijo boss; settlement grid + build mode; house decorating; 2 allies; art batch 2.
+4. Week 4: story, polish, balance, performance; feature-complete 19 Dec.
 
 ---
 **Kill condition:** if a battle turn still feels slow or confusing on a phone after two tuning rounds of the battle slice.

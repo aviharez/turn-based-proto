@@ -49,6 +49,18 @@ const C_SELECT: Color = Color("#e6d082")         # [26]
 const C_INTENT_FILL: Color = Color(0.663, 0.212, 0.141, 0.3)   # [23] at 30%
 const C_APPROACH: Color = Color("#eba477")       # [17]
 
+const C_FOCUS: Color = Color("#e2ae4b")          # [24]
+const C_BUTTON: Color = Color("#544131")         # [13]
+const C_BUTTON_PRESSED: Color = Color("#7f683b") # [14]
+const C_BUTTON_DISABLED: Color = Color("#2a251f")  # [12]
+const C_TEXT_DISABLED: Color = Color("#7e7969")  # [5]
+
+## HUD sizes in viewport pixels (1080 wide; 48 dp ≈ 126 px on a 1080-wide phone).
+const HUD: Dictionary = {
+	"margin": 32, "gap": 18, "min_touch": 132, "action_h": 168, "row_h": 140,
+	"bar_h": 56, "pip": 40, "font_big": 48, "font_small": 38,
+}
+
 ## World-pixel font size for intent damage labels.
 const INTENT_FONT_PX: int = 8
 ## Pulse of the red tile under an endangered hero.

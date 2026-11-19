@@ -19,17 +19,25 @@ tokens stay in your Claude Code / pi config or environment, never in git.
 | ElevenLabs | SFX, ambience, music | ElevenLabs MCP with your own API key in env |
 | Godot MCP | run the game, screenshots for review | pick one in week 1: godot-mcp-runtime or hi-godot/godot-ai; keep only the one that works |
 
-Only Claude Code needs MCP servers. The pi agents (OpenAI model, GLM-5.3-Flash) have no MCP by
-design and don't need it: their lanes are code, data, tests and docs, checked with `make check`.
+Claude Code and pi (through the owner's pi MCP extension) can both use MCP servers.
+Give each harness only what its lane needs:
+
+| Server | Claude Code | pi (@gpt, @glm) |
+| --- | --- | --- |
+| Godot MCP | yes | yes (own scene/UI work) |
+| SpriteCook, PixelLab, ElevenLabs | yes | no: paid credits, @claude only |
+
+Leaving the art/audio servers out of pi's MCP config is safer than relying on the rule alone.
 
 ## When to set each one up
 - **Now:** nothing is required to start M1 coding. `make check` needs only Godot on PATH.
-- **First `src/view/` story:** a Godot MCP for Claude, so it can run the game and take screenshots
+- **First `src/view/` story:** a Godot MCP for Claude and pi, so they can run the game and take screenshots
   (or take them manually and drop them in `production/qa/evidence/`).
 - **First approved art task:** SpriteCook (then PixelLab as fallback).
 - **First audio task:** ElevenLabs.
 
 ## pi setup
+- MCP: add the Godot MCP to your pi MCP extension config (not the art/audio servers).
 - Install: `npm install -g @earendil-works/pi-coding-agent` (or `curl -fsSL https://pi.dev/install.sh | sh`).
 - pi loads `AGENTS.md` from the repo root at startup; check the startup header lists it.
 - Configure the two providers in pi with your own keys (OpenAI; Z.ai or another GLM-5.3-Flash provider).

@@ -71,11 +71,14 @@ Design source of truth: `design/game-brief.md`, then `design/gdd/`. Milestone: `
 - @claude (Claude Code): coordinator, design, architecture, review, art/audio generation (MCP), dialogue, game feel.
 - @gpt (pi + OpenAI model): systems code, scenes, CI, plugins.
 - @glm (pi + GLM-5.3-Flash): content data, tests, docs, localisation, refactors with a written spec.
-  May read screenshots to check its own UI/data work; never generates art and never writes dialogue.
+  Never generates art and never writes dialogue.
 
-pi has no MCP and no subagents by design. pi agents work through files and `make` only:
-run `make check` themselves, and leave anything that needs an MCP (art, audio, Godot screenshots)
-to @claude in the task handoff.
+MCP access (pi uses the owner's MCP extension):
+- @gpt may use the Godot MCP to run the game and screenshot its own scene work.
+- @glm may use the Godot MCP only to screenshot its own UI/data work.
+- Art and audio MCPs (SpriteCook, PixelLab, ElevenLabs) are @claude only, even if pi can see them.
+  They spend paid credits; pi agents write the asset need into the task handoff instead.
+- Every agent runs `make check` itself before handing off.
 
 ## Skills (all agents)
 Skills live in `.claude/skills/<name>/SKILL.md`. Claude Code loads them automatically;

@@ -98,7 +98,7 @@ Source: https://www.spritecook.ai/blog/generate-game-ui-with-ai
 ## 7. Agent setup
 Sources: https://www.spritecook.ai/blog/ai-agent-generate-sprites , https://www.spritecook.ai/blog/codex-spritecook-plugin
 - Claude Code: MCP `https://api.spritecook.ai/mcp/` with Bearer key (keys in env, never in git).
-- Codex: `codex plugin marketplace add SpriteCook/codex-plugin` then `codex plugin add spritecook@spritecook`.
+- Only Claude Code generates art. pi agents (GPT, GLM) don't get the art MCPs; they hand art needs to @claude.
 - Check credit balance before batches; poll long jobs instead of assuming completion.
 
 ## 8. Disclosure and ethics

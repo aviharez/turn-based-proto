@@ -11,7 +11,7 @@ Three project skills for the game repo. Copy the `.claude/` folder into the repo
 
 Built from 46 of the 59 SpriteCook blog posts (game techniques, tilesets, Godot tutorial,
 AI art workflow, characters and animation). Skipped 13 that don't apply: Unity/Tiled-only
-tutorials, Cursor/OpenCode/Claude-desktop plugin posts (we use Claude Code + Codex), product
+tutorials, Cursor/OpenCode/Claude-desktop plugin posts (we use Claude Code + pi), product
 announcements and rewards, Chroma Awards, wallpapers, the Nano Banana 2 Lite and Phaser posts,
 and the pet-to-sprite post. All text is summarised in our own
 words with the original article linked; agents are told to read the original for code and
@@ -20,8 +20,8 @@ ready-made prompts.
 ## Tools
 `tools/art/edge_wang.py` builds a 16-tile edge-Wang sheet from a seamless source texture (SpriteCook method) and renders a test map.
 
-## Make Codex and omp use them too
-Codex and omp don't read `.claude/skills/` automatically. Add this to AGENTS.md:
+## Make the pi agents use them too
+pi doesn't read `.claude/skills/` automatically, so AGENTS.md (already done in this repo) says:
 
 ```markdown
 ## Skills (all agents)

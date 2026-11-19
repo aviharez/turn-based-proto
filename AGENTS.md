@@ -1,6 +1,7 @@
 # Runedeep — rules for all agents
 
-Read by every agent (Claude Code, Codex, omp + DeepSeek). `CLAUDE.md` imports this file.
+Read by every agent: Claude Code, and pi (running OpenAI and GLM-5.3-Flash models). `CLAUDE.md` imports
+this file; pi loads it automatically from the repo root.
 
 ## Project
 Turn-based tactical RPG with roguelike expeditions and a home settlement you build.
@@ -67,11 +68,21 @@ Design source of truth: `design/game-brief.md`, then `design/gdd/`. Milestone: `
 - Never read or commit `.env`, keystores or API keys.
 
 ## Agent lanes
-- @claude: coordinator, design, architecture, review, art/audio generation, dialogue, game feel.
-- @codex: systems code, scenes, CI, plugins.
-- @deepseek: content data, tests, docs, localisation, refactors with a written spec. No visual tasks.
+- @claude (Claude Code): coordinator, design, architecture, review, art/audio generation (MCP), dialogue, game feel.
+- @gpt (pi + OpenAI model): systems code, scenes, CI, plugins.
+- @glm (pi + GLM-5.3-Flash): content data, tests, docs, localisation, refactors with a written spec.
+  Never generates art and never writes dialogue.
+
+MCP access (pi uses the owner's MCP extension):
+- @gpt may use the Godot MCP to run the game and screenshot its own scene work.
+- @glm may use the Godot MCP only to screenshot its own UI/data work.
+- Art and audio MCPs (SpriteCook, PixelLab, ElevenLabs) are @claude only, even if pi can see them.
+  They spend paid credits; pi agents write the asset need into the task handoff instead.
+- Every agent runs `make check` itself before handing off.
 
 ## Skills (all agents)
+Skills live in `.claude/skills/<name>/SKILL.md`. Claude Code loads them automatically;
+pi agents open the file by path when a rule below applies.
 - Before any visual / game-feel / UI work, read `.claude/skills/pixel-techniques/SKILL.md` and the matching reference.
 - Before generating or importing art, read `.claude/skills/ai-art-pipeline/SKILL.md`.
 - Before marking a UI, design or VFX story done, run `.claude/skills/quality-bar/SKILL.md` and attach evidence.

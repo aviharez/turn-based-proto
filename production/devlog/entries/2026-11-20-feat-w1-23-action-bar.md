@@ -16,7 +16,7 @@ Every button sits where your thumb already is.
 Strike, Cast, Guard, Parry and End turn sit in the bottom of the screen, with Focus costs on the buttons, HP and Focus pips above them, and a line that explains the enemy you tapped. Buttons switch off when the rules say no.
 
 **Numbers:** (tests passing, files changed, credits spent, time it took, FPS...)
-45/45 tests (10 new). Highest button at 81% of screen height (the limit is 40%). Smallest button side 140 px, about 53 dp. 0 credits.
+46/46 tests (11 new). Highest button at 81% of screen height (the limit is 40%). Smallest button side 140 px, about 53 dp. 0 credits.
 
 **Behind the scenes / AI note:** (which agent did it, what went wrong, what a human had to fix)
 The words still show as keys like UI_HP until @glm adds the strings (W1-15). Claude also caught a double-tap bug: a tap on a button would also have tapped the tile behind it.

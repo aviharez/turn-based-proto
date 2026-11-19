@@ -84,7 +84,7 @@ func show_snapshot(snapshot: Dictionary) -> void:
 
 
 func _refresh_hud() -> void:
-	var model: Dictionary = BattleHudModel.build(_snapshot, DemoSnapshot.focus_costs())
+	var model: Dictionary = BattleHudModel.build(_snapshot)
 	var line: Dictionary = BattleHudModel.intent_line(_selection.selected_unit(_snapshot), _selection.selected_intent(_snapshot))
 	_hud.show_model(model, line)
 

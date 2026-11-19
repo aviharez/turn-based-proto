@@ -39,7 +39,7 @@ static func _spend_action(next: Dictionary, action: String) -> Dictionary:
 	var options: Dictionary = next["options"]
 	hero["acted"] = true
 	if action != "strike":
-		hero["focus"] = int(hero["focus"]) - int(DemoSnapshot.focus_costs()[action])
+		hero["focus"] = int(hero["focus"]) - int((options["costs"] as Dictionary)[action])
 		for unit: Dictionary in next["units"]:
 			if int(unit["uid"]) == int(hero["uid"]):
 				unit["stance"] = action

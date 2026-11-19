@@ -1,8 +1,6 @@
 extends GdUnitTestSuite
 ## HUD state rules (story W1-23): buttons follow `options`, Cast stays off in Week 1.
 
-const COSTS: Dictionary = {"guard": 1, "parry": 2}
-
 var _snap: Dictionary
 
 
@@ -11,11 +9,11 @@ func before_test() -> void:
 
 
 func _buttons(snap: Dictionary) -> Dictionary:
-	return BattleHudModel.build(snap, COSTS)["buttons"]
+	return BattleHudModel.build(snap)["buttons"]
 
 
 func test_reads_hp_focus_and_round() -> void:
-	var m: Dictionary = BattleHudModel.build(_snap, COSTS)
+	var m: Dictionary = BattleHudModel.build(_snap)
 	assert_int(m["hp"]).is_equal(24)
 	assert_int(m["hp_max"]).is_equal(30)
 	assert_int(m["focus"]).is_equal(3)
@@ -42,6 +40,13 @@ func test_guard_and_parry_off_when_sim_says_no_focus() -> void:
 	assert_bool(b["guard"]["enabled"]).is_false()
 	assert_bool(b["parry"]["enabled"]).is_false()
 	assert_int(b["parry"]["cost"]).is_equal(2)
+
+
+func test_costs_come_from_snapshot_options() -> void:
+	_snap["options"]["costs"] = {"guard": 3, "parry": 5}
+	var b: Dictionary = _buttons(_snap)
+	assert_int(b["guard"]["cost"]).is_equal(3)
+	assert_int(b["parry"]["cost"]).is_equal(5)
 
 
 func test_strike_off_without_targets() -> void:

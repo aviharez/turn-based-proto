@@ -35,11 +35,6 @@ static func week1_clearing() -> Dictionary:
 			"move": [Vector2i(4, 6), Vector2i(4, 7), Vector2i(3, 7), Vector2i(2, 7), Vector2i(5, 7), Vector2i(1, 7)],
 			"strike": [Vector2i(3, 5), Vector2i(2, 6)],
 			"guard": true, "parry": true,
+			"costs": {"guard": 1, "parry": 2},  # battle.md §3.3 GUARD_COST / PARRY_COST
 		},
 	}
-
-
-## Focus costs to show on the Guard and Parry buttons. Mirrors battle.md §3.3 (Tuning.GUARD_COST /
-## PARRY_COST in PR #4); W1-26 reads Tuning directly and deletes this.
-static func focus_costs() -> Dictionary:
-	return {"guard": 1, "parry": 2}

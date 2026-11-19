@@ -1,17 +1,17 @@
 class_name BattleHudModel
 extends RefCounted
 ## What the battle HUD shows, worked out from a snapshot (design/gdd/battle.md §3.11) with no
-## nodes, so it can be unit-tested. Button availability comes only from `options`; Focus costs
-## are injected (from Tuning once the sim lands in W1-26) and are only displayed.
+## nodes, so it can be unit-tested. Button availability and Focus costs come only from
+## `options` (including `options.costs`); the view never reads Tuning.
 
 const CAST_ENABLED_IN_WEEK1: bool = false
 
 
 ## Returns {round, hp, hp_max, focus, focus_max, buttons: {name: {enabled, cost}}}.
-## `costs` maps "guard"/"parry" to their Focus cost.
-static func build(snapshot: Dictionary, costs: Dictionary) -> Dictionary:
+static func build(snapshot: Dictionary) -> Dictionary:
 	var hero: Dictionary = snapshot.get("hero", {})
 	var options: Dictionary = snapshot.get("options", {})
+	var costs: Dictionary = options.get("costs", {})
 	var hero_unit: Dictionary = BattleSelection.unit_by_uid(int(hero.get("uid", -1)), snapshot)
 	var player_turn: bool = snapshot.get("phase", "") == "player" and String(snapshot.get("result", "")) == ""
 	var can_act: bool = player_turn and not bool(hero.get("acted", false))

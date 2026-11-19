@@ -1,0 +1,13 @@
+{
+  "assets": [
+    {
+      "asset_id": "f2f0e00b-2338-4d33-9676-ed534e140ea1",
+      "label": "moss_texture_b (SpriteCook texture, nano-banana-2.1) - CHOSEN source for moss edge-Wang",
+      "sha12": "8af956992190"
+    },
+    {
+      "asset_id": "00afd573-2f80-492d-8aa9-dd57ae400a65",
+      "label": "moss_texture_a (SpriteCook texture) - rejected: too uniform"
+    }
+  ]
+}

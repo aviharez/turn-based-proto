@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene load_steps=6 format=3]
 
 [ext_resource type="Script" path="res://src/view/battle/battle_view.gd" id="1_view"]
 [ext_resource type="Script" path="res://src/view/battle/board_layer.gd" id="2_board"]
 [ext_resource type="Script" path="res://src/view/battle/unit_layer.gd" id="3_units"]
 [ext_resource type="Script" path="res://src/view/battle/battle_camera.gd" id="4_camera"]
+[ext_resource type="Script" path="res://src/view/battle/selection_layer.gd" id="5_select"]
 
 
 [node name="BattleView" type="Node2D"]
@@ -14,6 +15,10 @@ script = ExtResource("1_view")
 [node name="Board" type="Node2D" parent="World"]
 unique_name_in_owner = true
 script = ExtResource("2_board")
+
+[node name="Highlights" type="Node2D" parent="World"]
+unique_name_in_owner = true
+script = ExtResource("5_select")
 
 [node name="Units" type="Node2D" parent="World"]
 unique_name_in_owner = true

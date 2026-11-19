@@ -1,7 +1,7 @@
 # Local setup: Godot, MCP servers and tools
 
 No secrets live in this repo. Each developer connects MCP servers on their own machine;
-tokens stay in your Claude Code / Codex config or environment, never in git.
+tokens stay in your Claude Code / pi config or environment, never in git.
 
 ## 1. Godot
 - Install Godot **4.7.2-stable** and put it on PATH as `godot` (or pass `GODOT=/path` to make).
@@ -14,12 +14,26 @@ tokens stay in your Claude Code / Codex config or environment, never in git.
 ## 2. MCP servers (Claude Code)
 | Server | Use | Setup |
 | --- | --- | --- |
-| SpriteCook | first choice for all art | `npx spritecook-mcp setup` (OAuth in browser) |
+| SpriteCook | first choice for all art | `npx spritecook-mcp setup`, or the HTTP MCP `https://api.spritecook.ai/mcp/` (sign in with OAuth or a key in env) |
 | PixelLab | fallback art, 8-dir characters, VFX workbench | add the HTTP MCP `https://api.pixellab.ai/mcp` with your token from pixellab.ai, e.g. `claude mcp add pixellab https://api.pixellab.ai/mcp -t http -H "Authorization: Bearer $PIXELLAB_TOKEN"` |
 | ElevenLabs | SFX, ambience, music | ElevenLabs MCP with your own API key in env |
 | Godot MCP | run the game, screenshots for review | pick one in week 1: godot-mcp-runtime or hi-godot/godot-ai; keep only the one that works |
 
-Codex and omp/DeepSeek don't need the art MCPs (no visual tasks in their lanes).
+Only Claude Code needs MCP servers. The pi agents (OpenAI model, GLM-5.3-Flash) have no MCP by
+design and don't need it: their lanes are code, data, tests and docs, checked with `make check`.
+
+## When to set each one up
+- **Now:** nothing is required to start M1 coding. `make check` needs only Godot on PATH.
+- **First `src/view/` story:** a Godot MCP for Claude, so it can run the game and take screenshots
+  (or take them manually and drop them in `production/qa/evidence/`).
+- **First approved art task:** SpriteCook (then PixelLab as fallback).
+- **First audio task:** ElevenLabs.
+
+## pi setup
+- Install: `npm install -g @earendil-works/pi-coding-agent` (or `curl -fsSL https://pi.dev/install.sh | sh`).
+- pi loads `AGENTS.md` from the repo root at startup; check the startup header lists it.
+- Configure the two providers in pi with your own keys (OpenAI; Z.ai or another GLM-5.3-Flash provider).
+  Keys go in pi's own config or env vars, never in this repo.
 
 ## 3. Orca lanes
 See `AGENTS.md` → Agent lanes. One task = one branch/worktree; `make check` before every PR.

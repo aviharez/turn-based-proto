@@ -4,11 +4,14 @@ extends Node2D
 
 var _units: Array = []
 var _elevation: Dictionary = {}
+var _danger_tiles: Dictionary = {}
 
 
 ## Reads "units" and "grid.elevation" from a battle snapshot (design/gdd/battle.md §3.11).
-func show_units(units: Array, grid: Dictionary) -> void:
+## Units standing on a tile in `danger_tiles` (cell -> anything) get a red outline.
+func show_units(units: Array, grid: Dictionary, danger_tiles: Dictionary = {}) -> void:
 	_units = units.duplicate(true)
+	_danger_tiles = danger_tiles
 	_elevation = (grid.get("elevation", {}) as Dictionary).duplicate()
 	queue_redraw()
 
@@ -32,13 +35,17 @@ func _draw_unit(unit: Dictionary, font: Font) -> void:
 	draw_set_transform(centre + Vector2(1.0, r - 1.0), 0.0, Vector2(1.0, 0.4))
 	draw_circle(Vector2.ZERO, r, BattleViewConfig.C_SHADOW)
 	draw_set_transform(Vector2.ZERO)
+	if not is_enemy and _danger_tiles.has(cell):
+		# Red band with a pale outer edge, so it still reads on a red intent tile.
+		draw_circle(centre, r + 4.0, BattleViewConfig.C_RIM)
+		draw_circle(centre, r + 3.0, BattleViewConfig.C_DANGER)
 	draw_circle(centre, r + 1.0, BattleViewConfig.C_OUTLINE)
 	draw_circle(centre, r, body)
 	if is_enemy:
 		draw_arc(centre, r, PI, PI * 1.5, 8, BattleViewConfig.C_RIM, 1.0)
 	var letter: String = String(unit.get("id", "?")).substr(0, 1).to_upper()
 	var fs: int = BattleViewConfig.TOKEN_FONT_PX
-	draw_string(font, centre + Vector2(-r, fs * 0.35), letter, HORIZONTAL_ALIGNMENT_CENTER, r * 2.0, fs, BattleViewConfig.C_RIM)
+	BattleViewConfig.draw_text_crisp(self, font, centre + Vector2(-r, fs * 0.35), letter, fs, BattleViewConfig.C_RIM, HORIZONTAL_ALIGNMENT_CENTER, r * 2.0)
 	_draw_hp(centre - Vector2(r, r + 5.0), r * 2.0, unit, is_enemy)
 
 

@@ -46,6 +46,15 @@ const C_STRIKE_EDGE: Color = Color("#da915d")    # [16]
 const C_DANGER: Color = Color("#a93624")         # [23]
 const C_INTENT_SELECTED_FILL: Color = Color(0.663, 0.212, 0.141, 0.55)  # [23] at 55%
 const C_SELECT: Color = Color("#e6d082")         # [26]
+const C_INTENT_FILL: Color = Color(0.663, 0.212, 0.141, 0.3)   # [23] at 30%
+const C_APPROACH: Color = Color("#eba477")       # [17]
+
+## World-pixel font size for intent damage labels.
+const INTENT_FONT_PX: int = 8
+## Pulse of the red tile under an endangered hero.
+const DANGER_PULSE_HZ: float = 1.5
+const DANGER_PULSE_ALPHA_MIN: float = 0.3
+const DANGER_PULSE_ALPHA_MAX: float = 0.75
 
 ## Inset of a highlighted tile from its edges, in world pixels.
 const HIGHLIGHT_INSET_PX: float = 1.0
@@ -73,3 +82,19 @@ static func cell_center(cell: Vector2i) -> Vector2:
 ## Tile under a world-pixel position (may be outside the arena).
 static func world_to_cell(world: Vector2) -> Vector2i:
 	return Vector2i(floori(world.x / TILE_PX), floori(world.y / TILE_PX))
+
+
+## Draws text in world space but rasterised at screen resolution, so world labels stay sharp
+## at every zoom step. `baseline` is in world pixels, `size_px` is the world-pixel font size.
+static func draw_text_crisp(item: CanvasItem, font: Font, baseline: Vector2, text: String, size_px: float, colour: Color, align: HorizontalAlignment = HORIZONTAL_ALIGNMENT_LEFT, width_px: float = -1.0) -> void:
+	var zoom: float = maxf(1.0, item.get_viewport().get_canvas_transform().get_scale().x)
+	item.draw_set_transform(baseline, 0.0, Vector2.ONE / zoom)
+	var width: float = width_px * zoom if width_px > 0.0 else -1.0
+	item.draw_string(font, Vector2.ZERO, text, align, width, roundi(size_px * zoom), colour)
+	item.draw_set_transform(Vector2.ZERO)
+
+
+## Width of `text` in world pixels when drawn with draw_text_crisp.
+static func text_width_world(item: CanvasItem, font: Font, text: String, size_px: float) -> float:
+	var zoom: float = maxf(1.0, item.get_viewport().get_canvas_transform().get_scale().x)
+	return font.get_string_size(text, HORIZONTAL_ALIGNMENT_LEFT, -1, roundi(size_px * zoom)).x / zoom

@@ -40,6 +40,15 @@ const C_RIM: Color = Color("#d8dcdd")            # [31]
 const C_HP_BACK: Color = Color("#33191f")        # [19]
 const C_HP_FILL: Color = Color("#a93624")        # [23]
 const C_HP_HERO: Color = Color("#81d593")        # [30]
+const C_MOVE_FILL: Color = Color(0.271, 0.361, 0.494, 0.8)    # [28] at 80%
+const C_MOVE_EDGE: Color = Color(0.847, 0.863, 0.867, 0.45)  # [31] at 45%
+const C_STRIKE_EDGE: Color = Color("#da915d")    # [16]
+const C_DANGER: Color = Color("#a93624")         # [23]
+const C_INTENT_SELECTED_FILL: Color = Color(0.663, 0.212, 0.141, 0.55)  # [23] at 55%
+const C_SELECT: Color = Color("#e6d082")         # [26]
+
+## Inset of a highlighted tile from its edges, in world pixels.
+const HIGHLIGHT_INSET_PX: float = 1.0
 
 
 ## Camera zoom factor that shows ZOOM_TILES_ACROSS[step] tiles across the viewport width.

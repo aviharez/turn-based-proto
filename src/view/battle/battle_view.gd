@@ -10,6 +10,8 @@ signal command_requested(command: Dictionary)
 @onready var _board: BoardLayer = %Board
 @onready var _units: UnitLayer = %Units
 @onready var _highlights: SelectionLayer = %Highlights
+@onready var _intents: IntentLayer = %Intents
+@onready var _intent_overlay: IntentOverlay = %IntentOverlay
 @onready var _camera: BattleCamera = %Camera
 @onready var _zoom_in: Button = %ZoomIn
 @onready var _zoom_out: Button = %ZoomOut
@@ -53,7 +55,9 @@ func show_snapshot(snapshot: Dictionary) -> void:
 	_snapshot = snapshot
 	var grid: Dictionary = snapshot.get("grid", {})
 	_board.show_grid(grid)
-	_units.show_units(snapshot.get("units", []), grid)
+	_units.show_units(snapshot.get("units", []), grid, BattleIntents.damage_by_tile(snapshot.get("intents", [])))
+	_intents.show_intents(snapshot)
+	_intent_overlay.show_intents(snapshot)
 	var t: int = BattleViewConfig.TILE_PX
 	_camera.arena_size_px = Vector2(int(grid.get("width", 0)) * t, int(grid.get("height", 0)) * t)
 	_selection.refresh(snapshot)
@@ -65,6 +69,9 @@ func _on_demo_command(command: Dictionary) -> void:
 
 
 func _on_zoom_step_changed(step: int) -> void:
+	# World text is rasterised per zoom step (BattleViewConfig.draw_text_crisp).
+	_units.queue_redraw()
+	_intent_overlay.queue_redraw()
 	_zoom_in.disabled = step <= 0
 	_zoom_out.disabled = step >= _camera.step_count() - 1
 

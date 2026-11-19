@@ -5,7 +5,7 @@
 
 ## Acceptance criteria
 - [ ] The battle scene builds `BattleSim` from `wk1_clearing`, sends the view's commands to `apply()`, plays the returned events in order (simple tweens), then re-reads `snapshot()`.
-- [ ] The demo snapshot and demo driver are deleted. The view contains no rule logic: a grep for `manhattan` or `Tuning.` in `src/view/` finds nothing.
+- [ ] The demo snapshot and demo driver (`src/view/battle/demo/`) are deleted. The view contains no rule logic: a grep for `manhattan` or `Tuning.` in `src/view/` finds nothing.
 - [ ] Win and lose show a panel with Retry. The scene is the project's main scene for the Week 1 build.
 
 ## Evidence

@@ -6,6 +6,7 @@
 ## Acceptance criteria
 - [ ] Guard costs `GUARD_COST` and ends the turn. Every hit taken this enemy phase becomes `dmg - dmg*GUARD_REDUCTION_PCT/100`: 6→3, 2→1, 1→1.
 - [ ] Parry costs `PARRY_COST` and ends the turn. The first hit becomes 0 and emits `parried` with `reflected`. An attacker within `PARRY_REFLECT_RANGE` takes the reflected damage. The hero gains `FOCUS_ON_PARRY`. The second hit lands in full.
+- [ ] `snapshot().options.costs` = `{"guard": GUARD_COST, "parry": PARRY_COST}` (battle.md §3.11), so the HUD shows costs without reading `Tuning`.
 - [ ] A Parry with no hit keeps the Focus spent. Both stances clear at the next player phase start (`stance_set` with `""`).
 - [ ] A reflect that kills the last enemy emits `battle_won`.
 

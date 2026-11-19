@@ -192,10 +192,12 @@ An invalid command returns `[SimEvent(&"command_rejected", {"reason": String})]`
   "intents": [{"uid": int, "kind": "melee"|"smash"|"approach",
                "tiles": [Vector2i], "damage": int}],
   "options": {"move": [Vector2i], "strike": [Vector2i],
-              "guard": bool, "parry": bool}
+              "guard": bool, "parry": bool,
+              "costs": {"guard": int, "parry": int}}
 }
 ```
-`options` is computed by the sim, so the view never re-implements the rules.
+`options` is computed by the sim, so the view never re-implements the rules. `options.costs`
+copies `GUARD_COST` and `PARRY_COST` so the HUD can show them without reading `Tuning`.
 
 **Events** (`SimEvent.type`, with its `data` keys):
 

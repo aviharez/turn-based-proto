@@ -37,3 +37,9 @@ static func week1_clearing() -> Dictionary:
 			"guard": true, "parry": true,
 		},
 	}
+
+
+## Focus costs to show on the Guard and Parry buttons. Mirrors battle.md §3.3 (Tuning.GUARD_COST /
+## PARRY_COST in PR #4); W1-26 reads Tuning directly and deletes this.
+static func focus_costs() -> Dictionary:
+	return {"guard": 1, "parry": 2}

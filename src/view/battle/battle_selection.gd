@@ -48,8 +48,13 @@ func is_hero_selected(snapshot: Dictionary) -> bool:
 
 ## The selected unit's snapshot entry, or {} when nothing is selected.
 func selected_unit(snapshot: Dictionary) -> Dictionary:
+	return unit_by_uid(selected_uid, snapshot)
+
+
+## The snapshot entry of the unit with `uid`, or {}.
+static func unit_by_uid(uid: int, snapshot: Dictionary) -> Dictionary:
 	for unit: Dictionary in snapshot.get("units", []):
-		if int(unit["uid"]) == selected_uid:
+		if int(unit["uid"]) == uid:
 			return unit
 	return {}
 

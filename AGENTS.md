@@ -7,7 +7,8 @@ this file; pi loads it automatically from the repo root.
 Turn-based tactical RPG with roguelike expeditions and a home settlement you build.
 Android first, portrait. Godot 4.7 (pinned: 4.7.2-stable), typed GDScript.
 Setting: Sundara, a Nusantara-inspired archipelago (see `design/game-brief.md`).
-Design source of truth: `design/game-brief.md`, then `design/gdd/`. Milestone: `production/milestone.md`.
+Design source of truth: `design/game-brief.md`, then `design/gdd/`. Milestone: `production/milestone.md`
+(30-day Chapter 1 build, feature-complete Sat 19 Dec 2026: anything not listed there waits).
 
 ## Architecture (do not break)
 - `src/sim/` is pure logic: no Node, no scene, no rendering, no time/delta. Deterministic.
@@ -50,6 +51,7 @@ Design source of truth: `design/game-brief.md`, then `design/gdd/`. Milestone: `
 ## Monetization rules (hard)
 - Never add: energy, loot boxes/gacha, premium currency, paid stats or runes, forced ads, paid speed-ups.
 - Paid items are only: full-game unlock, cosmetics (decor packs, hero skins), supporter pack.
+- Chapter 1 ships free with no payment code at all; billing work starts with Chapter 2.
 - Any store/IAP change needs a human-approved issue first.
 - Farms and buildings use real time, capped at 24 h. Never sell speed-ups.
 
@@ -61,6 +63,11 @@ Design source of truth: `design/game-brief.md`, then `design/gdd/`. Milestone: `
 - Every text change runs `/text-review` (editor pass) before merge. The owner spot-checks main story scenes.
 - All player-facing text lives in `src/content/text/*.csv` (en, id).
 - Cultural sensitivity list in `design/lore/sensitivity.md` is binding.
+
+## Devlog (Instagram material)
+- Every PR adds one entry in `production/devlog/entries/` (`make devlog TITLE="..."`) and, for visible
+  changes, a screenshot or GIF in `production/devlog/media/dayNN/`. Keep the "before" image when replacing art or UI.
+- @claude drafts the weekly post with `.claude/skills/devlog/SKILL.md`. Nobody posts; the owner does.
 
 ## Git
 - One task = one branch/worktree. Conventional commits. Never push to main, never force-push.

@@ -11,6 +11,10 @@ config/version="0.0.1"
 run/main_scene="res://src/view/boot/boot.tscn"
 config/features=PackedStringArray("4.7", "Mobile")
 
+[autoload]
+
+DevCapture="*res://src/view/debug/dev_capture.gd"
+
 [debug]
 
 gdscript/warnings/untyped_declaration=2
